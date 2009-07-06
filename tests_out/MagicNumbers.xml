@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<AST:PHP_script xmlns:AST="http://www.phpcompiler.org/phc-1.1" xmlns:HIR="http://www.phpcompiler.org/phc-1.1" xmlns:MIR="http://www.phpcompiler.org/phc-1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<attrs>
+		<attr key="phc.filename"><string>/home/fa/code/padawan/tests/MagicNumbers.php</string></attr>
+	</attrs>
+	<AST:Statement_list>
+		<AST:Eval_expr>
+			<attrs>
+				<attr key="phc.comments">
+					<string_list>
+					</string_list>
+				</attr>
+				<attr key="phc.filename"><string>/home/fa/code/padawan/tests/MagicNumbers.php</string></attr>
+				<attr key="phc.line_number"><integer>2</integer></attr>
+			</attrs>
+			<AST:Assignment>
+				<attrs>
+					<attr key="phc.filename"><string>/home/fa/code/padawan/tests/MagicNumbers.php</string></attr>
+					<attr key="phc.line_number"><integer>2</integer></attr>
+				</attrs>
+				<AST:Variable>
+					<attrs>
+						<attr key="phc.filename"><string>/home/fa/code/padawan/tests/MagicNumbers.php</string></attr>
+						<attr key="phc.line_number"><integer>2</integer></attr>
+					</attrs>
+					<AST:Target xsi:nil="true" />
+					<AST:VARIABLE_NAME>
+						<attrs />
+						<value>hullabalooza</value>
+					</AST:VARIABLE_NAME>
+					<AST:Expr_list>
+					</AST:Expr_list>
+				</AST:Variable>
+				<bool><!-- is_ref -->false</bool>
+				<AST:INT>
+					<attrs>
+						<attr key="phc.filename"><string>/home/fa/code/padawan/tests/MagicNumbers.php</string></attr>
+						<attr key="phc.line_number"><integer>2</integer></attr>
+						<attr key="phc.unparser.source_rep"><string>86400</string></attr>
+					</attrs>
+					<value>86400</value>
+				</AST:INT>
+			</AST:Assignment>
+		</AST:Eval_expr>
+		<AST:Eval_expr>
+			<attrs>
+				<attr key="phc.comments">
+					<string_list>
+					</string_list>
+				</attr>
+				<attr key="phc.filename"><string>/home/fa/code/padawan/tests/MagicNumbers.php</string></attr>
+				<attr key="phc.line_number"><integer>3</integer></attr>
+			</attrs>
+			<AST:Assignment>
+				<attrs>
+					<attr key="phc.filename"><string>/home/fa/code/padawan/tests/MagicNumbers.php</string></attr>
+					<attr key="phc.line_number"><integer>3</integer></attr>
+				</attrs>
+				<AST:Variable>
+					<attrs>
+						<attr key="phc.filename"><string>/home/fa/code/padawan/tests/MagicNumbers.php</string></attr>
+						<attr key="phc.line_number"><integer>3</integer></attr>
+					</attrs>
+					<AST:Target xsi:nil="true" />
+					<AST:VARIABLE_NAME>
+						<attrs />
+						<value>warped</value>
+					</AST:VARIABLE_NAME>
+					<AST:Expr_list>
+					</AST:Expr_list>
+				</AST:Variable>
+				<bool><!-- is_ref -->false</bool>
+				<AST:INT>
+					<attrs>
+						<attr key="phc.filename"><string>/home/fa/code/padawan/tests/MagicNumbers.php</string></attr>
+						<attr key="phc.line_number"><integer>3</integer></attr>
+						<attr key="phc.unparser.source_rep"><string>86400</string></attr>
+					</attrs>
+					<value>86400</value>
+				</AST:INT>
+			</AST:Assignment>
+		</AST:Eval_expr>
+		<AST:Nop>
+			<attrs>
+				<attr key="phc.comments">
+					<string_list>
+					</string_list>
+				</attr>
+				<attr key="phc.filename"><string>/home/fa/code/padawan/tests/MagicNumbers.php</string></attr>
+				<attr key="phc.line_number"><integer>4</integer></attr>
+			</attrs>
+		</AST:Nop>
+	</AST:Statement_list>
+</AST:PHP_script>

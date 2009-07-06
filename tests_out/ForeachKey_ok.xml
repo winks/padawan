@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<AST:PHP_script xmlns:AST="http://www.phpcompiler.org/phc-1.1" xmlns:HIR="http://www.phpcompiler.org/phc-1.1" xmlns:MIR="http://www.phpcompiler.org/phc-1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<attrs>
+		<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ForeachKey_ok.php</string></attr>
+	</attrs>
+	<AST:Statement_list>
+		<AST:Foreach>
+			<attrs>
+				<attr key="phc.comments">
+					<string_list>
+					</string_list>
+				</attr>
+				<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ForeachKey_ok.php</string></attr>
+				<attr key="phc.line_number"><integer>2</integer></attr>
+			</attrs>
+			<AST:Variable>
+				<attrs>
+					<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ForeachKey_ok.php</string></attr>
+					<attr key="phc.line_number"><integer>2</integer></attr>
+				</attrs>
+				<AST:Target xsi:nil="true" />
+				<AST:VARIABLE_NAME>
+					<attrs />
+					<value>foo</value>
+				</AST:VARIABLE_NAME>
+				<AST:Expr_list>
+				</AST:Expr_list>
+			</AST:Variable>
+			<AST:Variable>
+				<attrs>
+					<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ForeachKey_ok.php</string></attr>
+					<attr key="phc.line_number"><integer>2</integer></attr>
+				</attrs>
+				<AST:Target xsi:nil="true" />
+				<AST:VARIABLE_NAME>
+					<attrs />
+					<value>key</value>
+				</AST:VARIABLE_NAME>
+				<AST:Expr_list>
+				</AST:Expr_list>
+			</AST:Variable>
+			<bool><!-- is_ref -->false</bool>
+			<AST:Variable>
+				<attrs>
+					<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ForeachKey_ok.php</string></attr>
+					<attr key="phc.line_number"><integer>2</integer></attr>
+				</attrs>
+				<AST:Target xsi:nil="true" />
+				<AST:VARIABLE_NAME>
+					<attrs />
+					<value>val</value>
+				</AST:VARIABLE_NAME>
+				<AST:Expr_list>
+				</AST:Expr_list>
+			</AST:Variable>
+			<AST:Statement_list>
+				<AST:Eval_expr>
+					<attrs>
+						<attr key="phc.comments">
+							<string_list>
+							</string_list>
+						</attr>
+						<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ForeachKey_ok.php</string></attr>
+						<attr key="phc.line_number"><integer>3</integer></attr>
+					</attrs>
+					<AST:Assignment>
+						<attrs>
+							<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ForeachKey_ok.php</string></attr>
+							<attr key="phc.line_number"><integer>3</integer></attr>
+						</attrs>
+						<AST:Variable>
+							<attrs>
+								<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ForeachKey_ok.php</string></attr>
+								<attr key="phc.line_number"><integer>3</integer></attr>
+							</attrs>
+							<AST:Target xsi:nil="true" />
+							<AST:VARIABLE_NAME>
+								<attrs />
+								<value>abc</value>
+							</AST:VARIABLE_NAME>
+							<AST:Expr_list>
+							</AST:Expr_list>
+						</AST:Variable>
+						<bool><!-- is_ref -->false</bool>
+						<AST:Variable>
+							<attrs>
+								<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ForeachKey_ok.php</string></attr>
+								<attr key="phc.line_number"><integer>3</integer></attr>
+							</attrs>
+							<AST:Target xsi:nil="true" />
+							<AST:VARIABLE_NAME>
+								<attrs />
+								<value>key</value>
+							</AST:VARIABLE_NAME>
+							<AST:Expr_list>
+							</AST:Expr_list>
+						</AST:Variable>
+					</AST:Assignment>
+				</AST:Eval_expr>
+			</AST:Statement_list>
+		</AST:Foreach>
+	</AST:Statement_list>
+</AST:PHP_script>

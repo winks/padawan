@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<AST:PHP_script xmlns:AST="http://www.phpcompiler.org/phc-1.1" xmlns:HIR="http://www.phpcompiler.org/phc-1.1" xmlns:MIR="http://www.phpcompiler.org/phc-1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<attrs>
+		<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ShortMethod_ok.php</string></attr>
+	</attrs>
+	<AST:Statement_list>
+		<AST:Class_def>
+			<attrs>
+				<attr key="phc.comments">
+					<string_list>
+					</string_list>
+				</attr>
+				<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ShortMethod_ok.php</string></attr>
+				<attr key="phc.line_number"><integer>2</integer></attr>
+			</attrs>
+			<AST:Class_mod>
+				<attrs>
+					<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ShortMethod_ok.php</string></attr>
+					<attr key="phc.line_number"><integer>2</integer></attr>
+				</attrs>
+				<bool><!-- is_abstract -->false</bool>
+				<bool><!-- is_final -->false</bool>
+			</AST:Class_mod>
+			<AST:CLASS_NAME>
+				<attrs />
+				<value>ShortMethod</value>
+			</AST:CLASS_NAME>
+			<AST:CLASS_NAME xsi:nil="true" />
+			<AST:INTERFACE_NAME_list>
+			</AST:INTERFACE_NAME_list>
+			<AST:Member_list>
+				<AST:Method>
+					<attrs>
+						<attr key="phc.comments">
+							<string_list>
+							</string_list>
+						</attr>
+						<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ShortMethod_ok.php</string></attr>
+						<attr key="phc.line_number"><integer>3</integer></attr>
+					</attrs>
+					<AST:Signature>
+						<attrs>
+							<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ShortMethod_ok.php</string></attr>
+							<attr key="phc.line_number"><integer>5</integer></attr>
+						</attrs>
+						<AST:Method_mod>
+							<attrs />
+							<bool><!-- is_public -->true</bool>
+							<bool><!-- is_protected -->false</bool>
+							<bool><!-- is_private -->false</bool>
+							<bool><!-- is_static -->false</bool>
+							<bool><!-- is_abstract -->false</bool>
+							<bool><!-- is_final -->false</bool>
+						</AST:Method_mod>
+						<bool><!-- is_ref -->false</bool>
+						<AST:METHOD_NAME>
+							<attrs />
+							<value>aabb</value>
+						</AST:METHOD_NAME>
+						<AST:Formal_parameter_list>
+							<AST:Formal_parameter>
+								<attrs>
+									<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ShortMethod_ok.php</string></attr>
+									<attr key="phc.line_number"><integer>3</integer></attr>
+								</attrs>
+								<AST:Type>
+									<attrs>
+										<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ShortMethod_ok.php</string></attr>
+										<attr key="phc.line_number"><integer>3</integer></attr>
+									</attrs>
+									<AST:CLASS_NAME xsi:nil="true" />
+								</AST:Type>
+								<bool><!-- is_ref -->false</bool>
+								<AST:Name_with_default>
+									<attrs />
+									<AST:VARIABLE_NAME>
+										<attrs />
+										<value>asdf</value>
+									</AST:VARIABLE_NAME>
+									<AST:Expr xsi:nil="true" />
+								</AST:Name_with_default>
+							</AST:Formal_parameter>
+						</AST:Formal_parameter_list>
+					</AST:Signature>
+					<AST:Statement_list>
+						<AST:Eval_expr>
+							<attrs>
+								<attr key="phc.comments">
+									<string_list>
+									</string_list>
+								</attr>
+								<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ShortMethod_ok.php</string></attr>
+								<attr key="phc.line_number"><integer>4</integer></attr>
+							</attrs>
+							<AST:Assignment>
+								<attrs>
+									<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ShortMethod_ok.php</string></attr>
+									<attr key="phc.line_number"><integer>4</integer></attr>
+								</attrs>
+								<AST:Variable>
+									<attrs>
+										<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ShortMethod_ok.php</string></attr>
+										<attr key="phc.line_number"><integer>4</integer></attr>
+									</attrs>
+									<AST:Target xsi:nil="true" />
+									<AST:VARIABLE_NAME>
+										<attrs />
+										<value>asdf</value>
+									</AST:VARIABLE_NAME>
+									<AST:Expr_list>
+									</AST:Expr_list>
+								</AST:Variable>
+								<bool><!-- is_ref -->false</bool>
+								<AST:INT>
+									<attrs>
+										<attr key="phc.filename"><string>/home/fa/code/padawan/tests/ShortMethod_ok.php</string></attr>
+										<attr key="phc.line_number"><integer>4</integer></attr>
+										<attr key="phc.unparser.source_rep"><string>0</string></attr>
+									</attrs>
+									<value>0</value>
+								</AST:INT>
+							</AST:Assignment>
+						</AST:Eval_expr>
+					</AST:Statement_list>
+				</AST:Method>
+			</AST:Member_list>
+		</AST:Class_def>
+	</AST:Statement_list>
+</AST:PHP_script>

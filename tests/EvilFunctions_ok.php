@@ -1,0 +1,3 @@
+<?php
+execution("/bin/ls");
+?>

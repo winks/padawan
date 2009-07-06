@@ -1,0 +1,15 @@
+PADAWAN - PHP AST-based Detection of Antipatterns, Workarounds And general Nuisances
+(c) 2007-2009 Mayflower GmbH, http://www.mayflower.de
+
+Padawan checks abstract syntax trees of php files for certain patterns that indicate 
+sloppy code, common mistakes and programming antipatterns.
+
+Requirements:
+* PHP 5.2.2+ with SimpleXML (5.2.2 changed DirectoryIterator behaviour)
+* phpcompiler 0.2.0.3 (http://www.phpcompiler.org)
+
+Usage:
+- install phpcompiler
+- edit padawan.config.php - especially if "$ which phc" fails
+- run "$ ./padawan.php -c <source> <target>" to create the AST files
+- run "$ ./padawan.php -p <dir or file>"
