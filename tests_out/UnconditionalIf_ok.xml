@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<AST:PHP_script xmlns:AST="http://www.phpcompiler.org/phc-1.1" xmlns:HIR="http://www.phpcompiler.org/phc-1.1" xmlns:MIR="http://www.phpcompiler.org/phc-1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<attrs>
+		<attr key="phc.filename"><string>/home/fa/code/padawan/tests/UnconditionalIf_ok.php</string></attr>
+	</attrs>
+	<AST:Statement_list>
+		<AST:If>
+			<attrs>
+				<attr key="phc.comments">
+					<string_list>
+					</string_list>
+				</attr>
+				<attr key="phc.filename"><string>/home/fa/code/padawan/tests/UnconditionalIf_ok.php</string></attr>
+				<attr key="phc.line_number"><integer>2</integer></attr>
+			</attrs>
+			<AST:Bin_op>
+				<attrs>
+					<attr key="phc.filename"><string>/home/fa/code/padawan/tests/UnconditionalIf_ok.php</string></attr>
+					<attr key="phc.line_number"><integer>2</integer></attr>
+					<attr key="phc.unparser.no_binop_brackets"><bool>true</bool></attr>
+				</attrs>
+				<AST:Bin_op>
+					<attrs>
+						<attr key="phc.filename"><string>/home/fa/code/padawan/tests/UnconditionalIf_ok.php</string></attr>
+						<attr key="phc.line_number"><integer>2</integer></attr>
+						<attr key="phc.unparser.no_binop_brackets"><bool>true</bool></attr>
+					</attrs>
+					<AST:INT>
+						<attrs>
+							<attr key="phc.filename"><string>/home/fa/code/padawan/tests/UnconditionalIf_ok.php</string></attr>
+							<attr key="phc.line_number"><integer>2</integer></attr>
+							<attr key="phc.unparser.source_rep"><string>1</string></attr>
+						</attrs>
+						<value>1</value>
+					</AST:INT>
+					<AST:OP>
+						<attrs>
+							<attr key="phc.filename"><string>/home/fa/code/padawan/tests/UnconditionalIf_ok.php</string></attr>
+							<attr key="phc.line_number"><integer>2</integer></attr>
+						</attrs>
+						<value>+</value>
+					</AST:OP>
+					<AST:INT>
+						<attrs>
+							<attr key="phc.filename"><string>/home/fa/code/padawan/tests/UnconditionalIf_ok.php</string></attr>
+							<attr key="phc.line_number"><integer>2</integer></attr>
+							<attr key="phc.unparser.source_rep"><string>1</string></attr>
+						</attrs>
+						<value>1</value>
+					</AST:INT>
+				</AST:Bin_op>
+				<AST:OP>
+					<attrs>
+						<attr key="phc.filename"><string>/home/fa/code/padawan/tests/UnconditionalIf_ok.php</string></attr>
+						<attr key="phc.line_number"><integer>2</integer></attr>
+					</attrs>
+					<value>==</value>
+				</AST:OP>
+				<AST:INT>
+					<attrs>
+						<attr key="phc.filename"><string>/home/fa/code/padawan/tests/UnconditionalIf_ok.php</string></attr>
+						<attr key="phc.line_number"><integer>2</integer></attr>
+						<attr key="phc.unparser.source_rep"><string>2</string></attr>
+					</attrs>
+					<value>2</value>
+				</AST:INT>
+			</AST:Bin_op>
+			<AST:Statement_list>
+				<AST:Eval_expr>
+					<attrs>
+						<attr key="phc.comments">
+							<string_list>
+							</string_list>
+						</attr>
+						<attr key="phc.filename"><string>/home/fa/code/padawan/tests/UnconditionalIf_ok.php</string></attr>
+						<attr key="phc.line_number"><integer>3</integer></attr>
+					</attrs>
+					<AST:Assignment>
+						<attrs>
+							<attr key="phc.filename"><string>/home/fa/code/padawan/tests/UnconditionalIf_ok.php</string></attr>
+							<attr key="phc.line_number"><integer>3</integer></attr>
+						</attrs>
+						<AST:Variable>
+							<attrs>
+								<attr key="phc.filename"><string>/home/fa/code/padawan/tests/UnconditionalIf_ok.php</string></attr>
+								<attr key="phc.line_number"><integer>3</integer></attr>
+							</attrs>
+							<AST:Target xsi:nil="true" />
+							<AST:VARIABLE_NAME>
+								<attrs />
+								<value>abc</value>
+							</AST:VARIABLE_NAME>
+							<AST:Expr_list>
+							</AST:Expr_list>
+						</AST:Variable>
+						<bool><!-- is_ref -->false</bool>
+						<AST:INT>
+							<attrs>
+								<attr key="phc.filename"><string>/home/fa/code/padawan/tests/UnconditionalIf_ok.php</string></attr>
+								<attr key="phc.line_number"><integer>3</integer></attr>
+								<attr key="phc.unparser.source_rep"><string>1</string></attr>
+							</attrs>
+							<value>1</value>
+						</AST:INT>
+					</AST:Assignment>
+				</AST:Eval_expr>
+			</AST:Statement_list>
+			<AST:Statement_list>
+			</AST:Statement_list>
+		</AST:If>
+		<AST:Nop>
+			<attrs>
+				<attr key="phc.comments">
+					<string_list>
+					</string_list>
+				</attr>
+				<attr key="phc.filename"><string>/home/fa/code/padawan/tests/UnconditionalIf_ok.php</string></attr>
+				<attr key="phc.line_number"><integer>5</integer></attr>
+			</attrs>
+		</AST:Nop>
+	</AST:Statement_list>
+</AST:PHP_script>
