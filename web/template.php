@@ -18,7 +18,7 @@ if (isset($_GET['test']) && preg_match('/^(\w+)$/', $_GET['test'])) {
 }
 
 if (!isset($pathOutput)) {
-    $pathOutput = '../tests_out/';
+    $pathOutput = '../tests/patterns_tmp/';
 }
 
 $f[0] = $pathOutput.$testFile.'.xml';

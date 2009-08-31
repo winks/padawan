@@ -19,7 +19,7 @@ $expected = 'bool(true)
 bool(false)
 ';
 
-$d = dir('../tests/');
+$d = dir('../tests/patterns/');
 while (false !== ($entry = $d->read())) {
    if (substr($entry, -7) == '_ok.php') {
        $tests[] = substr($entry, 0, -7);
@@ -27,7 +27,7 @@ while (false !== ($entry = $d->read())) {
 }
 $d->close();
 
-$pathOutput = '../tests_out/';
+$pathOutput = '../tests/patterns_tmp/';
 
 foreach ($tests as $k => $v) {
     $testFile = $v;
