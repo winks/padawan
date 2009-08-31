@@ -21,7 +21,7 @@ class Padawan_Creation {
     /**
      * Interface to phc
      *
-     * @param sring $mode
+     * @param string $mode
      * @param array $f
      */
     private function worker($mode, $f) {

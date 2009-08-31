@@ -71,5 +71,13 @@ class Padawan_Profiler {
         
         return $ret;
     }
+    
+    public function getRaw($mode) {
+        $ret = array();
+        if (isset($this->count[$mode])) {
+            $ret = $this->count[$mode];
+        }
+        return $ret;
+    }
 }
 ?>
