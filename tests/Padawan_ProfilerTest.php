@@ -1,5 +1,5 @@
 <?php
-require_once 'classes/profiler.php';
+require_once '../classes/profiler.php';
 /**
  * Padawan_Profiler test case.
  */
