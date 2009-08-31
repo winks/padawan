@@ -109,7 +109,6 @@ function traverse($filename, $pad, $settings = null) {
                     $out_body['xml'] .= sprintf('  <error line="%s" column="0" severity="%s" message="%s" pattern="%s" />%s', $tv[1], 'warning', htmlentities($pad->getHint($testName)), $testName, "\n");
                     $out_body['csv'] .= sprintf('"%s";"%s";"%s";"%s";"%s"%s', '{FILE}', $tv[1], 'warning', $pad->getHint($testName), $testName,"\n");
                     $out_body['txt'] .= sprintf("  %s\t%s\t%s (%s)\n", $tv[1], 'warning', $pad->getHint($testName), $testName);
-                    #echo "____".$out_body['csv'];
                     if ($i == 0) {
                         $src_filename = $tv[0];
                         $i++;
@@ -122,7 +121,6 @@ function traverse($filename, $pad, $settings = null) {
                 $out_body['xml'] .= sprintf('  <error line="%s" column="0" severity="%s" message="%s" pattern="%s" />%s', $test[1], 'warning', htmlentities($pad->getHint($testName)), $testName, "\n");
                 $out_body['csv'] .= sprintf('"%s";"%s";"%s";"%s";"%s"%s', '{FILE}', $test[1], 'warning', $pad->getHint($testName), $testName, "\n");
                 $out_body['txt'] .= sprintf("  %s\t%s\t%s (%s)\n", $test[1], 'warning', $pad->getHint($testName), $testName);
-                #echo "____".$out_body['csv'];
                 if ($i == 0) {
                     $src_filename = $test[0];
                     $i++;
@@ -139,13 +137,11 @@ function traverse($filename, $pad, $settings = null) {
         $out['xml'] .= "</file>\n";
     }
     if (strlen($out_body['csv']) > 0) {
-        #$out['csv'] = sprintf('"%s";%s%s',$src_filename, $out_body['csv'],"\n");
         $out['csv'] = str_replace('{FILE}', $src_filename, $out_body['csv']);
     }
     if (strlen($out_body['txt']) > 0) {
         $out['txt'] = sprintf("#%s\n%s",$src_filename, $out_body['txt']);
     }
-    #var_dump($out['csv']);
     unset($filename);
     return $out;
 }

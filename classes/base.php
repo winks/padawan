@@ -148,9 +148,9 @@ class Padawan {
                 $res = null;
                 $q = sprintf($val['query'], $tmp[0][0]);
                 $res = $x->xpath($q);
-            	$return = $return && empty($res);
-            	
-            	$ql = $q.$q_line;
+                $return = $return && empty($res);
+                
+                $ql = $q.$q_line;
                 $line = $x->xpath($ql);
                 if ($line === false) {
                     $ql = $base['query'].'/../..'.$q_line;
