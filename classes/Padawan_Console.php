@@ -18,7 +18,7 @@ class Padawan_Console
     /**
      * Constructor.
      * @param $argv
-     * @return unknown_type
+     * @param $config
      */
     function __construct (array $argv = array(), array $config = array())
     {
@@ -27,12 +27,11 @@ class Padawan_Console
         $this->argc = count($argv);
         $this->dir = dirname($argv[0]);
     }
-    
-    function getConfig()
-    {
-        return $this->config;
-    }
 
+    /**
+     * Parses the console switches and acts accordingly.
+     * @return array
+     */
     function handleExec ()
     {
         if (!isset($this->argv[1])) {
@@ -56,12 +55,20 @@ class Padawan_Console
         return $ret;
     }
     
+    /**
+     * Prints the output and exit status code.
+     * @param $ret
+     */
     function printOutput (array $ret)
     {
         echo $ret['value'].PHP_EOL;
         exit($ret['code']);
     }
 
+    /**
+     * Starts the creation of XML files.
+     * @return array
+     */
     function doCreate ()
     {
         $pathIn  = isset($this->argv[2]) ? $this->argv[2] : '';
@@ -114,6 +121,10 @@ class Padawan_Console
         return array('code' => 0, 'value' => "creation finished");
     }
 
+    /**
+     * Starts the parsing of XML files.
+     * @return array
+     */
     function doParse ()
     {
         $target   = isset($this->argv[2]) ? $this->argv[2] : false;
@@ -136,11 +147,21 @@ class Padawan_Console
         return array('code' => 0, 'value' => "parsing finished");
     }
 
+    /**
+     * Displays info about missing parameters.
+     * @return array
+     */
     function showMissingParams ()
     {
         return $this->showWrongParams(2, true);
     }
 
+    /**
+     * Displays info about wrong parameters.
+     * @param $code
+     * @param $allMissing
+     * @return array
+     */
     function showWrongParams ($code = 1, $allMissing = false)
     {
         $ret = array();
@@ -157,6 +178,10 @@ class Padawan_Console
         return $ret;
     }
     
+    /**
+     * Displays the help text.
+     * @return array
+     */
     function showHelp ()
     {
         $val = '';
@@ -182,6 +207,10 @@ class Padawan_Console
         return array('code' => 0, 'value' => $val);
     }
 
+    /**
+     * Displays the version string.
+     * @return array
+     */
     function showVersion ()
     {
         $val = sprintf('PADAWAN %s - PHP AST-based Detection of Antipatterns,' 
@@ -190,6 +219,10 @@ class Padawan_Console
         return array('code' => 0, 'value' => $val);
     }
 
+    /**
+     * Displays a list of all tests.
+     * @return array
+     */
     function showTests ()
     {
         $val = 'available patterns:' . PHP_EOL;
@@ -199,6 +232,10 @@ class Padawan_Console
         return array('code' => 0, 'value' => $val);
     }
 
+    /**
+     * Displays a list of all tags.
+     * @return array
+     */
     function showTags ()
     {
         $val = '';

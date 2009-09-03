@@ -13,7 +13,6 @@ $mydir = dirname($argv[0]);
 require $mydir.'/classes/base.php';
 require $mydir.'/padawan.config.php';
 require $mydir.'/classes/creation.php';
-require $mydir.'/classes/functions.php';
 require $mydir.'/classes/profiler.php';
 require $mydir.'/classes/Padawan_Console.php';
 require $mydir.'/classes/Padawan_Parser.php';
