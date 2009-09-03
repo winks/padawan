@@ -16,7 +16,8 @@ require $mydir.'/classes/creation.php';
 require $mydir.'/classes/functions.php';
 require $mydir.'/classes/profiler.php';
 require $mydir.'/classes/Padawan_Console.php';
+require $mydir.'/classes/Padawan_Parser.php';
 
 $pcon = new Padawan_Console($_SERVER['argv'], $padawan);
 $ret = $pcon->handleExec();
-echo $pcon->showOutput($ret);
+echo $pcon->printOutput($ret);

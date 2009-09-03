@@ -56,9 +56,9 @@ class Padawan_Console
         return $ret;
     }
     
-    function showOutput (array $ret)
+    function printOutput (array $ret)
     {
-        echo $ret['value'];
+        echo $ret['value'].PHP_EOL;
         exit($ret['code']);
     }
 
@@ -111,21 +111,29 @@ class Padawan_Console
         // some profiling stuff
         echo $pc->pp->getProfiling();
         
-        return array('code' => 0, 'value' => "");
+        return array('code' => 0, 'value' => "creation finished");
     }
 
     function doParse ()
     {
-        $argv = $this->argv;
-        $_filename = array_shift($argv);
-        //strip -p
-        array_shift($argv);
-        // @TODO remove
-        $cmd = $this->dir.'/cli.php '.join(' ', $argv);
-        echo $cmd.PHP_EOL;
-        //system($cmd);
-        // @TODO end
-        return array('code' => 0, 'value' => "");
+        $target   = isset($this->argv[2]) ? $this->argv[2] : false;
+        
+        if (!is_readable($target)) {
+            return array(
+                'code' => 6,
+                'value' => sprintf("error: %s missing or not readable\n", $target),
+            );
+        }
+        
+        $pp = new Padawan_Profiler();
+        $pp->profile('def');
+        
+        $pparser = new Padawan_Parser($this->argv, $this->config);
+        $pparser->parse($target);
+        
+        $pp->profile('def', true);
+        echo $pp->getProfiling();
+        return array('code' => 0, 'value' => "parsing finished");
     }
 
     function showMissingParams ()

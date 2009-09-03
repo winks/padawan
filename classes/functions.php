@@ -16,7 +16,7 @@
  * @param array $settings
  * @return array
  */
-function traverse($filename, $pad, $settings = null) {
+function traverse_deprecated($filename, $pad, $settings = null) {
     if (is_null($settings)) {
         $settings = array(
             'colored' => true, 

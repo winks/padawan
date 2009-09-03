@@ -223,18 +223,18 @@ $abcdefghijklmno = 3.14;
     }
 
     /**
-     * Tests Padawan_Console->showOutput()
+     * Tests Padawan_Console->printOutput()
      */
-    public function testShowOutput ()
+    public function testPrintOutput ()
     {
-        // TODO Auto-generated Padawan_ConsoleTest->testShowOutput()
-        $this->markTestIncomplete("testShowOutput test not implemented");
+        // TODO Auto-generated Padawan_ConsoleTest->testPrintOutput()
+        $this->markTestIncomplete("testPrintOutput test not implemented");
         $argv = array('./padawan.php');
         $this->Padawan_Console = new Padawan_Console($argv);
         
         $test = array('code' => 0, 'value' => "foo");
         
-        $dump = $this->Padawan_Console->showOutput($test);
+        $dump = $this->Padawan_Console->printOutput($test);
         
         
         $this->expectOutputString($test['value']);
