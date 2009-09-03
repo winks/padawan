@@ -1,5 +1,7 @@
 <?php
 require_once '../classes/Padawan_Console.php';
+require_once '../classes/creation.php';
+require_once '../classes/profiler.php';
 require_once 'PHPUnit/Extensions/OutputTestCase.php';
 
 /**
@@ -150,9 +152,58 @@ class Padawan_ConsoleTest extends PHPUnit_Extensions_OutputTestCase
      */
     public function testDoCreate ()
     {
-        // TODO Auto-generated Padawan_ConsoleTest->testDoCreate()
-        $this->markTestIncomplete("doCreate test not implemented");
-        $this->Padawan_Console->doCreate(/* parameters */);
+        // put info into tempdir
+        $tmpname = serialize($_SERVER).time();
+        $tmpname = "padawan_test_".md5($tmpname);
+        $sys_tmp_dir = sys_get_temp_dir();
+        $path_base= $sys_tmp_dir.DIRECTORY_SEPARATOR.$tmpname;
+        
+        $path_in  = $path_base.DIRECTORY_SEPARATOR."in".DIRECTORY_SEPARATOR;
+        $path_out = $path_base.DIRECTORY_SEPARATOR."out".DIRECTORY_SEPARATOR;
+        
+        mkdir($path_base);
+        mkdir($path_in);
+        mkdir($path_out);
+        
+        $data_in_1 = '<?php
+$abcdefghijklmnop = 3.14;
+?>';
+        $data_in_2 = '<?php
+$abcdefghijklmno = 3.14;
+?>';
+        file_put_contents($path_in."LongVariable.php", $data_in_1);
+        file_put_contents($path_in."LongVariable_ok.php", $data_in_2);
+        
+        // create object
+        $argv = array('./padawan.php', '-c', $path_in, $path_out, '--skip-dot');
+        $config = array();
+        $config['phc'] = trim(`which phc 2> /dev/null`);
+        $config['skip_dot']    = false;
+        $config['skip_xml']    = false;
+        $config['extensions']  = array('php', 'php3', 'php4', 'php5', 'phtml');
+        $this->Padawan_Console = new Padawan_Console($argv, $config);
+        $ret = $this->Padawan_Console->doCreate();
+        
+        // verify file contents
+        
+        $read_1 = file_get_contents($path_out."LongVariable.xml");
+        $read_2 = file_get_contents($path_out."LongVariable_ok.xml");
+        
+        unlink($path_out."LongVariable.xml");
+        unlink($path_out."LongVariable_ok.xml");
+        rmdir($path_out);
+        
+        unlink($path_in."LongVariable.php");
+        unlink($path_in."LongVariable_ok.php");
+        rmdir($path_in);
+        
+        rmdir($path_base);
+        
+        $pat = '((.*)<attr key="phc.line_number"><integer>2</integer></attr>(.*)'.
+        '<attr key="phc.unparser.source_rep"><string>3.14</string></attr>(.*))s';
+        
+        $this->assertRegExp($pat, $read_1);
+        $this->assertRegExp($pat, $read_2);
     }
 
     /**

@@ -27,6 +27,11 @@ class Padawan_Console
         $this->argc = count($argv);
         $this->dir = dirname($argv[0]);
     }
+    
+    function getConfig()
+    {
+        return $this->config;
+    }
 
     function handleExec ()
     {
@@ -59,14 +64,53 @@ class Padawan_Console
 
     function doCreate ()
     {
-        $argv = $this->argv;
-        $_filename = array_shift($argv);
-        //strip -c
-        array_shift($argv);
-        $cmd = $this->dir.'/create.php '.join(' ', $argv);
-        echo $cmd;
-        //system($cmd);
-        // @TODO
+        $pathIn  = isset($this->argv[2]) ? $this->argv[2] : '';
+        $pathOut = isset($this->argv[3]) ? $this->argv[3] : '';
+        
+        // abort on common errors
+        if (!is_executable($this->config['phc'])) {
+            return array(
+                'code' => 3,
+                'value' => sprintf("error: phc not found at '%s'".PHP_EOL, $this->config['phc']),
+            );
+        }
+        if ($pathIn == '' || $pathIn == '.' || !is_dir(realpath($pathIn))) {
+            return array(
+                'code' => 4,
+                'value' => sprintf("error: input path not found at '%s'".PHP_EOL, $pathIn),
+            );
+        }
+        if ($pathOut == '' || $pathOut == '.' || !is_dir(realpath($pathOut))) {
+            return array(
+                'code' => 5,
+                'value' => sprintf("error: output path not found at '%s'".PHP_EOL, $pathOut),
+            );
+        }
+        
+        // exclude certain subdirs, like libraries
+        if (isset($this->argv[3]) && $this->argv[3] == '--exclude') {
+            $this->config['excl'] = isset($this->argv[4]) ? $this->argv[4] : '';
+        }
+        
+        // maybe skip the generation of DOT files
+        if (in_array('--skip-dot', $this->argv)) {
+            $this->config['skip_dot'] = true;
+        }
+        
+        // maybe skip the generation of XML files
+        if (in_array('--skip-xml', $this->argv)) {
+            $this->config['skip_xml'] = true;
+        }
+        
+        $this->config['pathInAbs']  = realpath($pathIn);
+        $this->config['pathOutAbs'] = realpath($pathOut);
+
+        $pc = new Padawan_Creation($this->config);
+        $pc->start();
+
+        // some profiling stuff
+        echo $pc->pp->getProfiling();
+        
         return array('code' => 0, 'value' => "");
     }
 
@@ -76,10 +120,11 @@ class Padawan_Console
         $_filename = array_shift($argv);
         //strip -p
         array_shift($argv);
+        // @TODO remove
         $cmd = $this->dir.'/cli.php '.join(' ', $argv);
-        echo $cmd;
+        echo $cmd.PHP_EOL;
         //system($cmd);
-        // @TODO
+        // @TODO end
         return array('code' => 0, 'value' => "");
     }
 
@@ -112,7 +157,7 @@ class Padawan_Console
         $val .= '  Step 1: create ASTs' . PHP_EOL;
         $val .= sprintf('Usage: %s -c <source> <target> [ --skip-dot | --skip-xml ]' . PHP_EOL, $this->argv[0]);
         $val .= '  Step 2: run tests' . PHP_EOL;
-        $val .= sprintf('Usage: %s -p <target> [-o /path/to/report] [-v]' . PHP_EOL, $this->argv[0]);
+        $val .= sprintf('Usage: %s -p <path/to/dir or file> [-o /path/to/output.xml] [-v]' . PHP_EOL, $this->argv[0]);
         $val .= PHP_EOL . PHP_EOL;
         $val .= '  General options:' . PHP_EOL;
         $val .= "  -c\t\tcreate ASTs" . PHP_EOL;
