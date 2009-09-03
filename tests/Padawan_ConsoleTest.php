@@ -202,8 +202,14 @@ $abcdefghijklmno = 3.14;
         $pat = '((.*)<attr key="phc.line_number"><integer>2</integer></attr>(.*)'.
         '<attr key="phc.unparser.source_rep"><string>3.14</string></attr>(.*))s';
         
+        $pat_output = "(creating XML for 'LongVariable.php'...(.*)done(.*)".
+                        "creating XML for 'LongVariable_ok.php'...(.*)done(.*)".
+                        "Padawan: finished creating 2 XML files in ([0-9\.]+) sec(.*)".
+                        "Padawan: total runtime: ([0-9\.]+) sec(.*))s";
+        
         $this->assertRegExp($pat, $read_1);
         $this->assertRegExp($pat, $read_2);
+        $this->expectOutputRegex($pat_output);
     }
 
     /**
