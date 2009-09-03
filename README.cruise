@@ -1,3 +1,9 @@
+PADAWAN - PHP AST-based Detection of Antipatterns, Workarounds And general Nuisances
+(c) 2007-2009 Mayflower GmbH, http://www.mayflower.de
+
+This is a sample for a cruise.xml.
+
+=============================
         <property name="padawan.dir" value="/home/src/Padawan/" />
         <property name="padawan.out" value="${basedir}/tmp/padawan-out/" />
         <property name="padawan.xml" value="${log.dir}/padawan.xml" />

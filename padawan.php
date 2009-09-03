@@ -70,12 +70,14 @@ if ($argv[0] == '-c') {
     //strip -c
     array_shift($argv);
     $cmd = $mydir.'/create.php '.join(' ', $argv);
-    system($cmd);
+    echo $cmd;
+    //system($cmd);
 } else if ($argv[0] == '-p') {
     //strip -p
     array_shift($argv);
     $cmd = $mydir.'/cli.php '.join(' ', $argv);
-    system($cmd);
+    echo $cmd;
+    //system($cmd);
 } else {
 
 }

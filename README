@@ -1,8 +1,10 @@
 PADAWAN - PHP AST-based Detection of Antipatterns, Workarounds And general Nuisances
 (c) 2007-2009 Mayflower GmbH, http://www.mayflower.de
 
-Padawan checks abstract syntax trees of php files for certain patterns that indicate 
-sloppy code, common mistakes and programming antipatterns.
+Padawan checks php code for code smells that indicate sloppy code, common mistakes and programming antipatterns.
+
+This works by generating an abstract syntax tree representation of the php code in xml
+with the help of phpcompiler, then searching for patterns inside those xml files via xpath.
 
 Requirements:
 * PHP 5.2.2+ with SimpleXML (5.2.2 changed DirectoryIterator behaviour)
