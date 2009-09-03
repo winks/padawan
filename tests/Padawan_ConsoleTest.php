@@ -150,76 +150,79 @@ class Padawan_ConsoleTest extends PHPUnit_Extensions_OutputTestCase
     /**
      * Tests Padawan_Console->doCreate()
      */
-    public function testDoCreate ()
+    public function testDoCreateBinary ()
     {
-        // put info into tempdir
-        $tmpname = serialize($_SERVER).time();
-        $tmpname = "padawan_test_".md5($tmpname);
-        $sys_tmp_dir = sys_get_temp_dir();
-        $path_base= $sys_tmp_dir.DIRECTORY_SEPARATOR.$tmpname;
-        
-        $path_in  = $path_base.DIRECTORY_SEPARATOR."in".DIRECTORY_SEPARATOR;
-        $path_out = $path_base.DIRECTORY_SEPARATOR."out".DIRECTORY_SEPARATOR;
-        
-        mkdir($path_base);
-        mkdir($path_in);
-        mkdir($path_out);
-        
-        $data_in_1 = '<?php
-$abcdefghijklmnop = 3.14;
-?>';
-        $data_in_2 = '<?php
-$abcdefghijklmno = 3.14;
-?>';
-        file_put_contents($path_in."LongVariable.php", $data_in_1);
-        file_put_contents($path_in."LongVariable_ok.php", $data_in_2);
-        
-        // create object
-        $argv = array('./padawan.php', '-c', $path_in, $path_out, '--skip-dot');
+        $argv = array('./padawan.php', '-c', '/tmp/in', '/tmp/out');
         $config = array();
-        $config['phc'] = trim(`which phc 2> /dev/null`);
-        $config['skip_dot']    = false;
-        $config['skip_xml']    = false;
-        $config['extensions']  = array('php', 'php3', 'php4', 'php5', 'phtml');
+        $config['phc'] = '/tmp/sure_no_binary_here.at_least_I_hope_so';
+        
         $this->Padawan_Console = new Padawan_Console($argv, $config);
         $ret = $this->Padawan_Console->doCreate();
         
-        // verify file contents
+        $this->assertEquals(3, $ret['code']);
         
-        $read_1 = file_get_contents($path_out."LongVariable.xml");
-        $read_2 = file_get_contents($path_out."LongVariable_ok.xml");
-        
-        unlink($path_out."LongVariable.xml");
-        unlink($path_out."LongVariable_ok.xml");
-        rmdir($path_out);
-        
-        unlink($path_in."LongVariable.php");
-        unlink($path_in."LongVariable_ok.php");
-        rmdir($path_in);
-        
-        rmdir($path_base);
-        
-        $pat = '((.*)<attr key="phc.line_number"><integer>2</integer></attr>(.*)'.
-        '<attr key="phc.unparser.source_rep"><string>3.14</string></attr>(.*))s';
-        
-        $pat_output = "(creating XML for 'LongVariable.php'...(.*)done(.*)".
-                        "creating XML for 'LongVariable_ok.php'...(.*)done(.*)".
-                        "Padawan: finished creating 2 XML files in ([0-9\.]+) sec(.*)".
-                        "Padawan: total runtime: ([0-9\.]+) sec(.*))s";
-        
-        $this->assertRegExp($pat, $read_1);
-        $this->assertRegExp($pat, $read_2);
-        $this->expectOutputRegex($pat_output);
     }
+
+    /**
+     * Tests Padawan_Console->doCreate()
+     */
+    public function testDoCreatePathIn ()
+    {
+        $argv = array('./padawan.php', '-c', '', '/tmp/out');
+        $config = array();
+        $config['phc'] = trim(`which phc 2> /dev/null`);
+        
+        $this->Padawan_Console = new Padawan_Console($argv, $config);
+        $ret = $this->Padawan_Console->doCreate();
+        
+        $this->assertEquals(4, $ret['code']);
+    }
+
+    /**
+     * Tests Padawan_Console->doCreate()
+     */
+    public function testDoCreatePathOut ()
+    {
+        $argv = array('./padawan.php', '-c', sys_get_temp_dir(), '');
+        $config = array();
+        $config['phc'] = trim(`which phc 2> /dev/null`);
+        
+        $this->Padawan_Console = new Padawan_Console($argv, $config);
+        $ret = $this->Padawan_Console->doCreate();
+        
+        $this->assertEquals(5, $ret['code']);
+        
+    }
+
+    /**
+     * Tests Padawan_Console->doCreate()
+     */
+    /*public function testDoCreateExclude ()
+    {
+        $argv = array('./padawan.php', '-c', sys_get_temp_dir(), sys_get_temp_dir(),'--exclude');
+        $config = array();
+        $config['phc'] = trim(`which phc 2> /dev/null`);
+        
+        $this->Padawan_Console = new Padawan_Console($argv, $config);
+        $ret = $this->Padawan_Console->doCreate();
+        
+        $this->assertEquals(5, $ret['code']);
+        
+    }*/
 
     /**
      * Tests Padawan_Console->doParse()
      */
     public function testDoParse ()
     {
-        // TODO Auto-generated Padawan_ConsoleTest->testDoParse()
-        $this->markTestIncomplete("doParse test not implemented");
-        $this->Padawan_Console->doParse(/* parameters */);
+        $argv = array('./padawan.php', '-p', '/tmp/hopefully_not_a_real_dir');
+        $config = array();
+        $config['phc'] = trim(`which phc 2> /dev/null`);
+        
+        $this->Padawan_Console = new Padawan_Console($argv, $config);
+        $ret = $this->Padawan_Console->doParse();
+        
+        $this->assertEquals(6, $ret['code']);
     }
 
     /**
