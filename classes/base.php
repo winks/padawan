@@ -45,14 +45,13 @@ class Padawan {
     public function loadFile($filename) {
         if (is_file($filename) && is_readable($filename)) {
             $xml = file_get_contents($filename);
-            $xml = str_replace(self::STRIP_XMLNS, '', $xml);
-            $this->xml = $xml;
             if ($xml === false) {
-                $this->stack[] = array('cannot read file '.$filename,self::P_ERROR);
                 return false;
             }
-            return true;
+            
+            return $this->setXml($xml);
         } else {
+            $this->stack[] = array('cannot read file '.$filename,self::P_ERROR);
             return false;
         }
     }
@@ -203,6 +202,15 @@ class Padawan {
      */
     public function getConfig() {
         return $this->config;
+    }
+    
+    public function setXml($data = "") {
+        $data = str_replace(self::STRIP_XMLNS, '', $data);
+        if (strlen($data) < 1) {
+            return false;
+        }
+        $this->xml = $data;
+        return true;
     }
 }
 ?>
