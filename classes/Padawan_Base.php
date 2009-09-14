@@ -15,6 +15,8 @@ class Padawan {
     // a list of messages
     private $stack;
     
+    private $element;
+    
     //const STRIP_XMLNS = ' xmlns="http://www.phpcompiler.org/phc-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"';
     const STRIP_XMLNS = ' xmlns="http://www.phpcompiler.org/phc-1.0"';
     
@@ -97,15 +99,9 @@ class Padawan {
     private function query($query, $details = false) {
         $q_file = '/attrs/attr[@key="phc.filename"]/string';
         $q_line = '/attrs/attr[@key="phc.line_number"]/integer';
-        try {
-            $x = new SimpleXMLElement($this->xml);
-            $x->registerxpathnamespace('AST', 'http://www.phpcompiler.org/phc-1.1');
-        } catch (Exception $e) {
-            $this->stack[] = array($e->__toString(), self::P_ERROR);
-            return false;
-        }
+        
         if ($query['test'] == self::TEST_COUNT) {
-            $result = $x->xpath($query['query']);
+            $result = $this->element->xpath($query['query']);
             if ($result !== false && count($result) == $query['expected']) {
                 if ($details) {
                     $file = false;
@@ -115,7 +111,7 @@ class Padawan {
                     $fixpath = '';
                     while ($file == false) {
                         $q = $query['query'].$fixpath.$q_file;
-                        $file = $x->xpath($q);
+                        $file = $this->element->xpath($q);
                         $fixpath .= '/..';
                         $i++;
                         if ($i > 4) break;
@@ -124,7 +120,7 @@ class Padawan {
                     $fixpath = '';
                     while ($line == false) {
                         $q = $query['query'].$fixpath.$q_line;
-                        $line = $x->xpath($q);
+                        $line = $this->element->xpath($q);
                         $fixpath .= '/..';
                         $i++;
                         if ($i > 4) break;
@@ -136,7 +132,7 @@ class Padawan {
             return false;
         } elseif ($query['test'] == self::TEST_STEP ) {
             $base = array_shift($query['query']);
-            $tmp = $x->xpath($base['query']);
+            $tmp = $this->element->xpath($base['query']);
             // if the first step fails, we can't match
             if ($tmp === false) {
                 return false;
@@ -146,21 +142,21 @@ class Padawan {
             foreach ($query['query'] as $key => $val) {
                 $res = null;
                 $q = sprintf($val['query'], $tmp[0][0]);
-                $res = $x->xpath($q);
+                $res = $this->element->xpath($q);
                 $return = $return && empty($res);
                 
                 $ql = $q.$q_line;
-                $line = $x->xpath($ql);
+                $line = $this->element->xpath($ql);
                 if ($line === false) {
                     $ql = $base['query'].'/../..'.$q_line;
-                    $line = $x->xpath($ql);
+                    $line = $this->element->xpath($ql);
                 }
                 
                 $qf = $q.$q_file;
-                $file = $x->xpath($qf);
+                $file = $this->element->xpath($qf);
                 if ($file === false) {
                     $qf = $base['query'].'/../..'.$q_file;
-                    $file = $x->xpath($qf);
+                    $file = $this->element->xpath($qf);
                 }
                 $retFile = (string)$file[0];
                 $retLine = (string)$line[0];
@@ -210,6 +206,13 @@ class Padawan {
             return false;
         }
         $this->xml = $data;
+        try {
+            $this->element = new SimpleXMLElement($this->xml);
+            $this->element->registerxpathnamespace('AST', 'http://www.phpcompiler.org/phc-1.1');
+        } catch (Exception $e) {
+            $this->stack[] = array($e->__toString(), self::P_ERROR);
+            return false;
+        }
         return true;
     }
 }
