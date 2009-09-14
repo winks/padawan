@@ -171,7 +171,7 @@ class Padawan_ConsoleTest extends PHPUnit_Extensions_OutputTestCase
     {
         $argv = array('./padawan.php', '-c', '', '/tmp/out');
         $config = array();
-        $config['phc'] = trim(`which phc 2> /dev/null`);
+        $config['phc'] = trim(`which echo 2> /dev/null`);
         
         $this->Padawan_Console = new Padawan_Console($argv, $config);
         $ret = $this->Padawan_Console->doCreate();
@@ -186,7 +186,7 @@ class Padawan_ConsoleTest extends PHPUnit_Extensions_OutputTestCase
     {
         $argv = array('./padawan.php', '-c', sys_get_temp_dir(), '');
         $config = array();
-        $config['phc'] = trim(`which phc 2> /dev/null`);
+        $config['phc'] = trim(`which echo 2> /dev/null`);
         
         $this->Padawan_Console = new Padawan_Console($argv, $config);
         $ret = $this->Padawan_Console->doCreate();
