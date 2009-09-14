@@ -1,6 +1,7 @@
 <?php
-require_once '../classes/creation.php';
-require_once '../classes/profiler.php';
+if (!defined('APP_PATH')) define('APP_PATH', realpath(dirname(__FILE__)) . '/../');
+require_once APP_PATH . '/classes/Padawan_Creation.php';
+require_once APP_PATH . '/classes/Padawan_Profiler.php';
 require_once 'PHPUnit/Extensions/OutputTestCase.php';
 
 /**

@@ -1,5 +1,6 @@
 <?php
-require_once '../classes/Padawan_Parser.php';
+if (!defined('APP_PATH')) define('APP_PATH', realpath(dirname(__FILE__)) . '/../');
+require_once APP_PATH . '/classes/Padawan_Parser.php';
 require_once 'PHPUnit/Framework/TestCase.php';
 
 /**
