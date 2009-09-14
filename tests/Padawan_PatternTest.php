@@ -19,8 +19,8 @@ class Padawan_PatternTest extends PHPUnit_Framework_TestCase
     protected function setUp ()
     {
         parent::setUp();
-        $this->pathIn = './patterns/';
-        $this->pathIn = './patterns_tmp/';
+        $this->pathIn = APP_PATH . '/tests/patterns/';
+        $this->pathIn = APP_PATH . '/tests/patterns_tmp/';
     }
     /**
      * Cleans up the environment after running a test.
