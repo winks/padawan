@@ -1,0 +1,18 @@
+--- webapps/cruisecontrol/xsl/buildresult.xsl	2009-09-23 09:45:24.000000000 +0200
++++ webapps/cruisecontrol/xsl/buildresult.xsl.new	2009-09-23 09:45:19.000000000 +0200
+@@ -47,6 +47,7 @@
+   <xsl:import href="modifications.xsl"/>
+   <xsl:import href="cvstagdiff.xsl"/>
+   <xsl:import href="distributables.xsl"/>
++  <xsl:import href="padawan_short.xsl"/>
+ 
+   <xsl:output method="html"/>
+ 
+@@ -62,6 +63,7 @@
+     <p><xsl:apply-templates select="$cruisecontrol.list" mode="modifications"/></p>
+     <p><xsl:apply-templates select="$cruisecontrol.list" mode="cvstagdiff"/></p>
+     <p><xsl:apply-templates select="$cruisecontrol.list" mode="distributables"/></p>
++    <p><xsl:apply-templates select="$cruisecontrol.list" mode="padawan"/></p>
+ 
+   </xsl:template>
+ </xsl:stylesheet>

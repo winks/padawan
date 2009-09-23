@@ -1,0 +1,16 @@
+--- config.xml	2009-09-23 09:42:28.000000000 +0200
++++ config.xml.new	2009-09-23 09:42:51.000000000 +0200
+@@ -60,11 +60,13 @@
+     </schedule>
+     <log dir="logs/${project.name}">
+       <merge dir="projects/${project.name}/build/logs/"/>
++      <merge dir="projects/${project.name}/build/xml/"/>
+     </log>
+     <publishers>
+       <currentbuildstatuspublisher file="logs/${project.name}/buildstatus.txt"/>
+       <artifactspublisher dir="projects/${project.name}/build/api" dest="artifacts/${project.name}" subdirectory="api"/>
+       <artifactspublisher dir="projects/${project.name}/build/coverage" dest="artifacts/${project.name}" subdirectory="coverage"/>
++      <artifactspublisher dir="projects/${project.name}/build/xml" dest="artifacts/${project.name}" subdirectory="xml"/>
+       <execute command="/home/cruise/bin/phpuc graph logs/${project.name} artifacts/${project.name}"/>
+     </publishers>
+   </project>
