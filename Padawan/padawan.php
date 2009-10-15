@@ -10,6 +10,7 @@
  */
 
 $mydir = dirname($argv[0]);
+$mydir = 'Padawan';
 require $mydir.'/classes/Padawan_Base.php';
 require $mydir.'/padawan.config.php';
 require $mydir.'/classes/Padawan_Creation.php';
