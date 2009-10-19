@@ -55,7 +55,8 @@
         <xsl:apply-templates select="." mode="summary"/>
         <xsl:apply-templates select="." mode="check-summary"/>
 
-        <table class="section">
+        <!--<table class="section">-->
+        <table class="result" align="center">
           <xsl:for-each select="file[error]">
             <xsl:sort data-type="number" order="descending" select="count(error)"/>
               <xsl:apply-templates select="."/>
@@ -65,7 +66,7 @@
 
     <xsl:template match="padawan" mode="summary">
 
-            <h3>Padawan
+<!--            <h3>Padawan
             <span class="label">(Files:
                 <xsl:value-of select="count(file[error])"/> 
             | Errors: 
@@ -73,11 +74,21 @@
             | Warnings:
                 <xsl:value-of select="count(file/error)"/>
              )</span>
-            </h3>
+            </h3>-->
+<h2>Padawan</h2>
+<table class="result" align="center">
+  <tr class="oddrow">
+    <td>
+            ( Files: <xsl:value-of select="count(file[error])"/>
+            | Errors: <xsl:value-of select="count(file/error[@severity='error'])"/>
+            | Warnings: <xsl:value-of select="count(file/error)"/> )
+    </td>
+  </tr>
+</table>
     </xsl:template>
 
     <xsl:template match="padawan" mode="check-summary">
-        <p/>
+        <!--<p/>-->
         <xsl:comment>
       </xsl:comment>
     </xsl:template>

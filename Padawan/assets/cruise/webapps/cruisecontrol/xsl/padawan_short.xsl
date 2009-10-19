@@ -47,42 +47,46 @@
     </xsl:template>
 
     <xsl:template match="padawan[file/error]" mode="padawan">
+        <table class="result" align="center">
         <xsl:apply-templates select="." mode="summary"/>
-        <table class="section">
+          <tbody>
           <xsl:for-each select="file[error]">
             <xsl:sort data-type="number" order="descending" select="count(error)"/>
               <xsl:apply-templates select="." mode="padawanSummary"/>
           </xsl:for-each>
+          </tbody>
         </table>
 
     </xsl:template>
 
     <xsl:template match="padawan" mode="summary">
-            <h3>Padawan
-            <span class="label">(Files:
-                <xsl:value-of select="count(file[error])"/> 
-            | Errors:
-                <xsl:value-of select="count(file/error[@severity='error'])"/>
-            | Warnings:
-                <xsl:value-of select="count(file/error)"/>
-             )</span>
-
-            </h3>
+        <thead>
+          <tr>
+            <th colspan="2">Padawan
+            ( Files: <xsl:value-of select="count(file[error])"/> 
+            | Errors: <xsl:value-of select="count(file/error[@severity='error'])"/>
+            | Warnings: <xsl:value-of select="count(file/error)"/> )
+            </th>
+            <th>Errors</th>
+            <th>Warnings</th>
+          </tr>
+        </thead>
     </xsl:template>
 
     <xsl:template match="file" mode="padawanSummary">
         <xsl:variable name="filename" select="replace(@name, '.*/spool/.*?/', '')" />
         <tr>
-            <td colspan="3">
+            <td></td>
+            <td>
                 <a class="php-file">
                 <xsl:value-of select="$filename" />
-
-                (
-                <xsl:value-of select="count(error[@severity='error'])" />
-                / 
-                <xsl:value-of select="count(error)" />
-                )
                 </a>
+            </td>
+            <td align="center">
+                <xsl:value-of select="count(error[@severity='error'])" />
+            </td>
+            <td align="center">
+                <xsl:value-of select="count(error)" />
             </td>
         </tr>
     </xsl:template>

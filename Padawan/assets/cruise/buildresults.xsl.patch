@@ -1,5 +1,5 @@
---- webapps/cruisecontrol/xsl/buildresult.xsl	2009-09-23 09:45:24.000000000 +0200
-+++ webapps/cruisecontrol/xsl/buildresult.xsl.new	2009-09-23 09:45:19.000000000 +0200
+--- webapps/cruisecontrol/xsl/buildresults.xsl	2009-10-19 13:46:20.000000000 +0200
++++ webapps/cruisecontrol/xsl/buildresults.xsl	2009-10-19 13:47:38.000000000 +0200
 @@ -47,6 +47,7 @@
    <xsl:import href="modifications.xsl"/>
    <xsl:import href="cvstagdiff.xsl"/>

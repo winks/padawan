@@ -1,20 +1,15 @@
---- webapps/cruisecontrol/main.jsp	2009-09-23 09:44:30.000000000 +0200
-+++ webapps/cruisecontrol/main.jsp.new	2009-09-23 09:44:40.000000000 +0200
-@@ -131,6 +131,17 @@
+--- webapps/cruisecontrol/main.jsp	2009-10-19 13:42:02.000000000 +0200
++++ webapps/cruisecontrol/main.jsp	2009-10-19 13:44:48.000000000 +0200
+@@ -130,6 +130,12 @@
+             </cruisecontrol:tab>
              
              <%-- phpUnderControl 8 --%>
++            
++            <!-- Padawan -->
++            <cruisecontrol:tab name="padawan" label="Padawan">
++              <cruisecontrol:xsl xslFile="/xsl/padawan_details.xsl"/>
++            </cruisecontrol:tab>
++
  
-+              <!-- Padawan -->
-+                <cruisecontrol:tab name="padawan" label="Padawan">
-+                        <div class="clear"> </div>
-+                        <div id="tabContent">
-+                                <div id="content">
-+                                        <div style="margin:15px">
-+                                        <cruisecontrol:xsl xslFile="/xsl/padawan_details.xsl"/>
-+                                        </div>
-+                                </div>
-+                   </div>
-+                </cruisecontrol:tab>
            </td>
          </tr>
-       </cruisecontrol:tabsheet>
