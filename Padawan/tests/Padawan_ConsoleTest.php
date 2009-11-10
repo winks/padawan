@@ -198,18 +198,26 @@ class Padawan_ConsoleTest extends PHPUnit_Extensions_OutputTestCase
     /**
      * Tests Padawan_Console->doCreate()
      */
-    /*public function testDoCreateExclude ()
+    public function testDoCreateExcludeBase ()
     {
-        $argv = array('./padawan.php', '-c', sys_get_temp_dir(), sys_get_temp_dir(),'--exclude');
-        $config = array();
+        $argv = array(
+        	'./padawan.php', 
+        	'-c', 
+        	sys_get_temp_dir(), 
+        	sys_get_temp_dir(),
+        	'--exclude',
+        	sys_get_temp_dir(),
+        	'--skip-dot',
+        );
+        $config = array('extensions' => array('php'));
         $config['phc'] = trim(`which phc 2> /dev/null`);
         
         $this->Padawan_Console = new Padawan_Console($argv, $config);
         $ret = $this->Padawan_Console->doCreate();
         
-        $this->assertEquals(5, $ret['code']);
+        $this->assertEquals(0, $ret['code']);
         
-    }*/
+    }
 
     /**
      * Tests Padawan_Console->doParse()
@@ -281,7 +289,7 @@ class Padawan_ConsoleTest extends PHPUnit_Extensions_OutputTestCase
     public function testShowHelpLong ()
     {
         $argv = array('./padawan.php');
-        $pat = sprintf('((.*)Usage: %s \[ -l \] \[ -t \] \[--version \](.*))',  $argv[0]);
+        $pat = sprintf('((.*)Usage: %s \[ -l \] \[ -t \] \[--version \](.*))',  basename($argv[0]));
         $this->Padawan_Console = new Padawan_Console($argv);
         $ret = $this->Padawan_Console->showHelp();
         

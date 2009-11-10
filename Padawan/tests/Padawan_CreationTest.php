@@ -76,6 +76,7 @@ $abcdefghijklmno = 3.14;
 ?>';
         file_put_contents($path_in."LongVariable.php", $data_in_1);
         file_put_contents($path_in."LongVariable_ok.php", $data_in_2);
+        file_put_contents($path_in."extension_test.php2", $data_in_2);
         
         // create object
         $config = array();
@@ -97,10 +98,17 @@ $abcdefghijklmno = 3.14;
         
         unlink($path_out."LongVariable.xml");
         unlink($path_out."LongVariable_ok.xml");
+        
+        // this should not be created due to the extension check
+        $u_x = 4;
+        if (is_file($path_out."extension_test.xml")) {
+        	$u_x = unlink($path_out."extension_test.xml");
+        }
         rmdir($path_out);
         
         unlink($path_in."LongVariable.php");
         unlink($path_in."LongVariable_ok.php");
+        unlink($path_in."extension_test.php2");
         rmdir($path_in);
         
         rmdir($path_base);
@@ -116,6 +124,7 @@ $abcdefghijklmno = 3.14;
         $this->assertRegExp($pat, $read_1);
         $this->assertRegExp($pat, $read_2);
         $this->expectOutputRegex($pat_output);
+        $this->assertEquals($u_x, 4);
     }
 }
 

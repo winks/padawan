@@ -205,14 +205,84 @@ class Padawan_BaseTest extends PHPUnit_Framework_TestCase
     public function testSetXmlOk ()
     {
         $config = array();
-        $data = "foo";
+        $data =<<<EOF
+<?xml version="1.0"?>
+<AST:PHP_script xmlns:AST="http://www.phpcompiler.org/phc-1.1" xmlns:HIR="http://www.phpcompiler.org/phc-1.1" xmlns:MIR="http://www.phpcompiler.org/phc-1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<attrs>
+		<attr key="phc.filename"><string>/tmp/xml/xmltest.php</string></attr>
+	</attrs>
+	<AST:Statement_list>
+		<AST:Eval_expr>
+			<attrs>
+				<attr key="phc.comments">
+					<string_list>
+					</string_list>
+				</attr>
+				<attr key="phc.filename"><string>/tmp/xml/xmltest.php</string></attr>
+				<attr key="phc.line_number"><integer>2</integer></attr>
+			</attrs>
+			<AST:Assignment>
+				<attrs>
+					<attr key="phc.filename"><string>/tmp/xml/xmltest.php</string></attr>
+					<attr key="phc.line_number"><integer>2</integer></attr>
+				</attrs>
+				<AST:Variable>
+					<attrs>
+						<attr key="phc.filename"><string>/tmp/xml/xmltest.php</string></attr>
+						<attr key="phc.line_number"><integer>2</integer></attr>
+					</attrs>
+					<AST:Target xsi:nil="true" />
+					<AST:VARIABLE_NAME>
+						<attrs />
+						<value>a</value>
+					</AST:VARIABLE_NAME>
+					<AST:Expr_list>
+					</AST:Expr_list>
+				</AST:Variable>
+				<bool><!-- is_ref -->false</bool>
+				<AST:BOOL>
+					<attrs>
+						<attr key="phc.filename"><string>/tmp/xml/xmltest.php</string></attr>
+						<attr key="phc.line_number"><integer>2</integer></attr>
+						<attr key="phc.unparser.source_rep"><string>true</string></attr>
+					</attrs>
+					<value>True</value>
+				</AST:BOOL>
+			</AST:Assignment>
+		</AST:Eval_expr>
+		<AST:Nop>
+			<attrs>
+				<attr key="phc.comments">
+					<string_list>
+					</string_list>
+				</attr>
+				<attr key="phc.filename"><string>/tmp/xml/xmltest.php</string></attr>
+				<attr key="phc.line_number"><integer>3</integer></attr>
+			</attrs>
+		</AST:Nop>
+	</AST:Statement_list>
+</AST:PHP_script>
+EOF;
         
         $this->Padawan = new Padawan($config);
         $ret = $this->Padawan->setXml($data);
         $this->assertTrue($ret);
     }
     
-/**
+
+    /**
+     * Tests Padawan->getConfig()
+     */
+    public function testSetXmlError ()
+    {
+        $config = array();
+        $data = "</AST:PHP_script>";
+        
+        $this->Padawan = new Padawan($config);
+        $ret = $this->Padawan->setXml($data);
+        $this->assertFalse($ret);
+    }
+    /**
      * Tests Padawan->getConfig()
      */
     public function testSetXmlShort ()
