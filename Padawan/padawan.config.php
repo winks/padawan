@@ -207,5 +207,6 @@ $padawan['patterns'] = array(
     */
 );
 
-$padawan['version'] = "0.4-beta1";
+$padawan['version'] = "0.4-beta2";
+$padawan['debug'] = false;
 ?>

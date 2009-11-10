@@ -95,8 +95,11 @@ class Padawan_Console
         }
         
         // exclude certain subdirs, like libraries
-        if (isset($this->argv[3]) && $this->argv[3] == '--exclude') {
-            $this->config['excl'] = isset($this->argv[4]) ? $this->argv[4] : '';
+        if (in_array('--exclude', $this->argv)) {
+            $tmp = array_flip($this->argv);
+            $ex = intval($tmp['--exclude']);
+            $path = $ex + 1;
+            $this->config['excl'] = isset($this->argv[$path]) ? realpath($this->argv[$path]) : '';
         }
         
         // maybe skip the generation of DOT files
@@ -184,18 +187,22 @@ class Padawan_Console
      */
     function showHelp ()
     {
+        $cmd_name = basename($this->argv[0]);
         $val = '';
+        $val .= "  General Options:" . PHP_EOL;
+        $val .= sprintf('    Usage: %s [ -l ] [ -t ] [--version ]' . PHP_EOL, $cmd_name);
         $val .= PHP_EOL;
-        $val .= sprintf('Usage: %s [ -l ] [ -t ] [--version ]' . PHP_EOL, $this->argv[0]);
-        $val .= '  Step 1: create ASTs' . PHP_EOL;
-        $val .= sprintf('Usage: %s -c <source> <target> [ --skip-dot | --skip-xml ]' . PHP_EOL, $this->argv[0]);
-        $val .= '  Step 2: run tests' . PHP_EOL;
-        $val .= sprintf('Usage: %s -p <path/to/dir or file> [-o /path/to/output.xml] [-v]' . PHP_EOL, $this->argv[0]);
+        $val .= "  Typical Usage:" . PHP_EOL;
+        $val .= '    Step 1: create ASTs' . PHP_EOL;
+        $val .= sprintf('      Usage: %s -c <source> <target> [ --skip-dot | --skip-xml | --exclude /abs/path or ./rel/path ]' . PHP_EOL, $cmd_name);
+        $val .= '    Step 2: run tests' . PHP_EOL;
+        $val .= sprintf('      Usage: %s -p <path/to/dir or file> [-o /path/to/output.xml] [-v]' . PHP_EOL, $cmd_name);
         $val .= PHP_EOL . PHP_EOL;
         $val .= '  General options:' . PHP_EOL;
         $val .= "  -c\t\tcreate ASTs" . PHP_EOL;
         $val .= "    --skip-dot\tskip creation of DOT files" . PHP_EOL;
         $val .= "    --skip-xml\tskip creation of XML files" . PHP_EOL;
+        $val .= "    --exclude\t/an/absolute/path or ./a/relative/path" . PHP_EOL;
         $val .= "  -p\t\trun tests on ASTs" . PHP_EOL;
         $val .= "    -o\t\tspecify output filename" . PHP_EOL;
         $val .= "    -v\t\tbe a bit more verbose" . PHP_EOL;
@@ -203,6 +210,7 @@ class Padawan_Console
         $val .= "  -l\t\tlist available tests" . PHP_EOL;
         $val .= "  --single a,b\trun single tests, separated with comma" . PHP_EOL;
         $val .= "  --tagged a,b\trun tests by tag, separated with comma" . PHP_EOL;
+        $val .= "" . PHP_EOL;
         $val .= "  --version\tshow version" . PHP_EOL;
         return array('code' => 0, 'value' => $val);
     }

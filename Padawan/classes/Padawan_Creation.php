@@ -55,6 +55,8 @@ class Padawan_Creation {
         $this->pp->profile('def');
         $iterator = new RecursiveDirectoryIterator($this->pad['pathInAbs']);
         $f = array();
+        $excl_abs_path = isset($this->pad['excl']) ? $this->pad['excl'] : '';
+        $len_excl_abs_path = strlen($excl_abs_path);
     
         // convert files to XML/DOT
         foreach (new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::CHILD_FIRST) as $file) {
@@ -62,18 +64,24 @@ class Padawan_Creation {
             $f['abs'] = $file->getPathname();
             $f['rel'] = str_replace($this->pad['pathInAbs'].'/', '', $f['abs']);
             
-            if ($this->debug) echo "ABS: ".$f['abs'].PHP_EOL;
+            if ($this->debug) echo " ABS: ".$f['abs'].PHP_EOL;
             
             // ignore directories, saves a second run to recreate the structure
             if (!$file->isDir()) {
                 $f['tmp'] = split('\.',$f['rel']);
-                if ($this->debug) echo "REL: ".$f['rel'].PHP_EOL;
+                if ($this->debug) echo " REL: ".$f['rel'].PHP_EOL;
+
+                // skip all exclude dirs
+                if ($len_excl_abs_path > 0 && substr($f['abs'], 0, $len_excl_abs_path) == $excl_abs_path) {
+                    continue;
+                }
                         
                 // skip all files with wrong extension
                 $f['ext'] = strtolower(array_pop($f['tmp']));
                 if (!in_array($f['ext'], $this->pad['extensions'])) {
                     continue;
                 }
+    
                 // create output filenames
                 $f['tmp2'] = $f['tmp'];
                 array_push($f['tmp'], 'xml');
