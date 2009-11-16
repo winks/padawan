@@ -18,7 +18,7 @@ http://pear.php.net/dtd/package-2.0.xsd">
 </lead>
 <date>2009-11-16</date>
 <version>
-  <release>0.4.2</release>
+  <release>0.4.3</release>
   <api>0.4</api>
 </version>
 <stability>
@@ -31,8 +31,88 @@ beta release
 </notes>
 <contents>
   <dir baseinstalldir="/" name="/">
-    <file baseinstalldir="/" name="Padawan/padawan.php" role="php" />
-  </dir>
+    <dir name="Padawan">
+      <file name="padawan.php" role="php" />
+      <file name="padawan.config.php" role="php" />
+      <file name="LICENSE" role="doc" />
+      <file name="README" role="doc" />
+      <file name="README.cruise" role="doc" />
+      <dir name="classes">
+        <file name="Padawan_Base.php" role="php" />
+        <file name="Padawan_Console.php" role="php" />
+        <file name="Padawan_Creation.php" role="php" />
+        <file name="Padawan_Parser.php" role="php" />
+        <file name="Padawan_Profiler.php" role="php" />
+      </dir> <!-- /Padawan/classes -->
+      <dir name="assets">
+        <dir name="cruise">
+          <file name="buildresults.xsl.patch" role="doc" />
+          <file name="config.xml.patch" role="doc" />
+          <file name="main.jsp.patch" role="doc" />
+          <dir name="webapps">
+            <dir name="cruisecontrol">
+              <dir name="xsl">
+                <file name="padawan_details.xsl" role="doc" />
+                <file name="padawan_short.xsl" role="doc" />
+              </dir> <!-- /Padawan/assets/cruise/webapps/cruisecontrol/xsl -->
+            </dir> <!-- /Padawan/assets/cruise/webapps/cruisecontrol -->
+          </dir> <!-- /Padawan/assets/cruise/webapps -->
+        </dir> <!-- /Padawan/assets/cruise -->
+      </dir> <!-- /Padawan/assets -->
+      <dir name="tests">
+        <file name="AllTests.php" role="test" />
+        <file name="Padawan_BaseTest.php" role="test" />
+        <file name="Padawan_ProfilerTest.php" role="test" />
+        <file name="Padawan_ParserTest.php" role="test" />
+        <file name="Padawan_CreationTest.php" role="test" />
+        <file name="Padawan_PatternTest.php" role="test" />
+        <file name="Padawan_ConsoleTest.php" role="test" />
+        <dir name="patterns">
+          <file name="Include_ok.php" role="test" />
+          <file name="OrExpression_ok.php" role="test" />
+          <file name="UnconditionalIf_ok.php" role="test" />
+          <file name="IncludeCat.php" role="test" />
+          <file name="LongVariable.php" role="test" />
+          <file name="LongVariable_ok.php" role="test" />
+          <file name="This_ok.php" role="test" />
+          <file name="IncludeCat_ok.php" role="test" />
+          <file name="EmptyCatch.php" role="test" />
+          <file name="ForeachKey.php" role="test" />
+          <file name="IfOrder_ok.php" role="test" />
+          <file name="DefineVar.php" role="test" />
+          <file name="Include.php" role="test" />
+          <file name="DefineVar_ok.php" role="test" />
+          <file name="Upload.php" role="test" />
+          <file name="This.php" role="test" />
+          <file name="OrExpression.php" role="test" />
+          <file name="UnsetThis_ok.php" role="test" />
+          <file name="EmptyIf.php" role="test" />
+          <file name="ShortVariable_ok.php" role="test" />
+          <file name="EmptyTry_ok.php" role="test" />
+          <file name="Upload_ok.php" role="test" />
+          <file name="EvilFunctions.php" role="test" />
+          <file name="EmptyElse.php" role="test" />
+          <file name="ForeachKey_ok.php" role="test" />
+          <file name="ShortMethod_ok.php" role="test" />
+          <file name="SelectAll.php" role="test" />
+          <file name="EmptyElse_ok.php" role="test" />
+          <file name="UnsetThis.php" role="test" />
+          <file name="Typecast_ok.php" role="test" />
+          <file name="EmptyTry.php" role="test" />
+          <file name="SelectAll_ok.php" role="test" />
+          <file name="ShortVariable.php" role="test" />
+          <file name="EmptyCatch_ok.php" role="test" />
+          <file name="Typecast.php" role="test" />
+          <file name="EvilFunctions_ok.php" role="test" />
+          <file name="Loop.php" role="test" />
+          <file name="Loop_ok.php" role="test" />
+          <file name="UnconditionalIf.php" role="test" />
+          <file name="ShortMethod.php" role="test" />
+          <file name="IfOrder.php" role="test" />
+        </dir> <!-- /Padawan/tests/patterns -->
+      </dir> <!-- /Padawan/tests -->
+    </dir> <!-- /Padawan -->
+  </dir> <!-- / -->
 </contents>
 <dependencies>
 <required>
@@ -46,7 +126,7 @@ beta release
 </dependencies>
 <phprelease>
   <filelist>
-   <ignore name="Padawan/padawan.php" />
+<!--   <install name="Padawan/padawan.php" /> -->
   </filelist>
 </phprelease>
 </package>
