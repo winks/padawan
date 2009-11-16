@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<package version="2.0" xmlns="http://pear.php.net/dtd/package-2.0"
+    xmlns:tasks="http://pear.php.net/dtd/tasks-1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+http://pear.php.net/dtd/tasks-1.0.xsd
+http://pear.php.net/dtd/package-2.0
+http://pear.php.net/dtd/package-2.0.xsd">
+<name>Padawan</name>
+<channel>pear.art-core.org</channel>
+<summary>PADAWAN - PHP AST-based Detection of Antipatterns, Workarounds And general Nuisances</summary>
+<description>Padawan checks php code for code smells that indicate sloppy code, common mistakes and programming antipatterns.</description>
+<lead>
+  <name>Florian Anderiasch</name>
+  <user>fa</user>
+  <email>fa@art-core.org</email>
+  <active>yes</active>
+</lead>
+<date>2009-11-16</date>
+<version>
+  <release>0.4.2</release>
+  <api>0.4</api>
+</version>
+<stability>
+  <release>beta</release>
+  <api>beta</api>
+</stability>
+<license>BSD</license>
+<notes>
+beta release
+</notes>
+<contents>
+  <dir baseinstalldir="/" name="/">
+    <file baseinstalldir="/" name="Padawan/padawan.php" role="php" />
+  </dir>
+</contents>
+<dependencies>
+<required>
+  <php>
+    <min>5.2.2</min>
+  </php>
+  <pearinstaller>
+    <min>1.4</min>
+  </pearinstaller>
+</required>
+</dependencies>
+<phprelease>
+  <filelist>
+   <ignore name="Padawan/padawan.php" />
+  </filelist>
+</phprelease>
+</package>
