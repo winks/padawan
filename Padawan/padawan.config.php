@@ -11,6 +11,7 @@
 $padawan['phc'] = trim(`which phc 2> /dev/null`);
 //$padawan['phc'] = '/path/to/phc';
 
+// in the creation step, let phpcompiler parse your php files to .xml, .dot or both
 $padawan['skip_dot']    = false;
 $padawan['skip_xml']    = false;
 $padawan['extensions']  = array('php', 'php3', 'php4', 'php5', 'phtml');
@@ -207,6 +208,13 @@ $padawan['patterns'] = array(
     */
 );
 
+// don't change anything here unless you know what you are doing.
+// soothsayers may predict the future of padawan, but please drop me a mail as well
 $padawan['version'] = "0.4.3";
 $padawan['debug'] = false;
+
+// this is not needed at the moment, you'll only need the output padawan.xml
+$padawan['skip_csv'] = true;
+$padawan['skip_txt'] = true;
+
 ?>

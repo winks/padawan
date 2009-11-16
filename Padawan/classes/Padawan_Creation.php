@@ -68,7 +68,7 @@ class Padawan_Creation {
             
             // ignore directories, saves a second run to recreate the structure
             if (!$file->isDir()) {
-                $f['tmp'] = split('\.',$f['rel']);
+                $f['tmp'] = preg_split('(\.)',$f['rel']);
                 if ($this->debug) echo " REL: ".$f['rel'].PHP_EOL;
 
                 // skip all exclude dirs

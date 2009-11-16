@@ -1,27 +1,30 @@
 PADAWAN - PHP AST-based Detection of Antipatterns, Workarounds And general Nuisances
 (c) 2007-2009 Mayflower GmbH, http://www.mayflower.de
 
-This is a sample for a cruise.xml.
+================================================
+This is a sample for a phpUnderControl build.xml
+================================================
 
-=============================
-        <property name="padawan.dir" value="/home/src/Padawan/" />
-        <property name="padawan.out" value="${basedir}/tmp/padawan-out/" />
-        <property name="padawan.xml" value="${log.dir}/padawan.xml" />
-        <property name="padawan-create.log" value="${log.dir}/padawan-create.log" />
-        <property name="padawan-test.log" value="${log.dir}/padawan-test.log" />
-
-        <mkdir dir="${basedir}/tmp" />
-        <mkdir dir="${padawan.out}" />
-
-        <touch file="${padawan-create.log}" mkdirs="true" />
-        <touch file="${padawan-test.log}" mkdirs="true" />
-        <touch file="${padawan.xml}" mkdirs="true" />
-
+        <!-- this is probably the "Padawan/" folder in your PEAR directory -->
+        <property name="padawan.dir" value="/usr/share/php/Padawan/" />
+        
+        <!-- Padawan -->
         <target name="padawan" description="Run the Padawan tests">
-                <exec dir="${basedir}" executable="sh" failonerror="true" output="${padawan-create.log}">
-                        <arg line="${padawan.dir}create.sh ${project.dir}/${cvs.module} ${padawan.out}" />
+                <!-- ${padawan.dir}padawan.php must be executable -->
+                <exec dir="${basedir}/source" executable="php" failonerror="true" output="${output.dir}/logs/padawan-create.log">
+                        <arg line="${padawan.dir}padawan.php -c ${basedir}/source ${output.dir}/padawan/ --skip-dot" />
                 </exec>
-                <exec dir="${basedir}" executable="sh" failonerror="true" output="${padawan-test.log}">
-                        <arg line="${padawan.dir}padawan.sh ${padawan.out} -o ${padawan.xml}" />
+                <exec dir="${basedir}/source" executable="php" failonerror="true" output="${output.dir}/logs/padawan-parse.log">
+                        <arg line="${padawan.dir}padawan.php -p ${output.dir}/padawan/ -o ${output.dir}/logs/padawan.xml" />
                 </exec>
         </target>
+
+================================================
+additional install instructions
+================================================
+
+Have a look at the assets/ directory.
+
+  - the *.patch files denote where you need to patch your phpUnderControl installation
+
+  - the other files should be dropped into the right folder structure.

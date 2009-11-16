@@ -19,7 +19,7 @@ class Padawan_Parser
         $this->config = $config;
     }
 
-    public function parse(string $target)
+    public function parse($target)
     {
         $default_dump['xml'] = './padawan-out.xml';
         $default_dump['csv'] = './padawan-out.csv';
@@ -104,7 +104,7 @@ class Padawan_Parser
         } else {
             $outfile['xml'] = $default_dump['xml'];
         }
-        $_split = split("\.", basename($outfile['xml']));
+        $_split = preg_split("(\.)", basename($outfile['xml']));
         array_pop($_split);
         $_split = join(".", $_split);
         $outfile['csv'] = sprintf("%s/%s.csv", dirname($outfile['xml']), $_split);
@@ -113,6 +113,9 @@ class Padawan_Parser
         //$put['xml'] = file_put_contents($outfile['xml'], $out['xml']);
         
         foreach ($outfile as $k => $v) {
+            if (isset($this->config['skip_'.$k]) && $this->config['skip_'.$k] == true) {
+                continue;
+            }
             $put = file_put_contents($v, $out[$k]);
             // don't say success if there was no data
             $put = strlen($out[$k]) === 0 ? false : true;
