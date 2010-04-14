@@ -55,8 +55,6 @@ class Padawan_Creation {
         $this->pp->profile('def');
         $iterator = new RecursiveDirectoryIterator($this->pad['pathInAbs']);
         $f = array();
-        $excl_abs_path = isset($this->pad['excl']) ? $this->pad['excl'] : '';
-        $len_excl_abs_path = strlen($excl_abs_path);
     
         // convert files to XML/DOT
         foreach (new RecursiveIteratorIterator($iterator, RecursiveIteratorIterator::CHILD_FIRST) as $file) {
@@ -72,7 +70,14 @@ class Padawan_Creation {
                 if ($this->debug) echo " REL: ".$f['rel'].PHP_EOL;
 
                 // skip all exclude dirs
-                if ($len_excl_abs_path > 0 && substr($f['abs'], 0, $len_excl_abs_path) == $excl_abs_path) {
+                $skip = false;
+                foreach ($this->pad['excl'] as $exclude_path) {
+                    $len_exclude = strlen($exclude_path);
+                    if ($len_exclude > 0 && substr($f['abs'], 0, $len_exclude) == $exclude_path) {
+                        $skip = true;
+                    }
+                }
+                if ($skip) {
                     continue;
                 }
                         
