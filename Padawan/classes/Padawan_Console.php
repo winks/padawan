@@ -23,6 +23,10 @@ class Padawan_Console
     function __construct (array $argv = array(), array $config = array())
     {
         $this->config = $config;
+        if (!isset($config['excl'])) {
+            $this->config['excl'] = array();
+        }
+        
         $this->argv = $argv;
         $this->argc = count($argv);
         $this->dir = dirname($argv[0]);
@@ -96,10 +100,13 @@ class Padawan_Console
         
         // exclude certain subdirs, like libraries
         if (in_array('--exclude', $this->argv)) {
-            $tmp = array_flip($this->argv);
-            $ex = intval($tmp['--exclude']);
-            $path = $ex + 1;
-            $this->config['excl'] = isset($this->argv[$path]) ? realpath($this->argv[$path]) : '';
+            for($i = 0; $i < $this->argc; $i++) {
+                if ('--exclude' == $this->argv[$i]) {
+                    if (isset($this->argv[$i+1]) && strlen($this->argv[$i+1]) > 0 ) {
+                        $this->config['excl'][] = realpath($this->argv[$i+1]);
+                    }
+                }
+            }
         }
         
         // maybe skip the generation of DOT files
@@ -194,7 +201,8 @@ class Padawan_Console
         $val .= PHP_EOL;
         $val .= "  Typical Usage:" . PHP_EOL;
         $val .= '    Step 1: create ASTs' . PHP_EOL;
-        $val .= sprintf('      Usage: %s -c <source> <target> [ --skip-dot | --skip-xml | --exclude /abs/path or ./rel/path ]' . PHP_EOL, $cmd_name);
+        $val .= sprintf('      Usage: %s -c <source> <target> [ --skip-dot | --skip-xml | '.
+                        '--exclude /abs/path --exclude ./rel/path ]' . PHP_EOL, $cmd_name);
         $val .= '    Step 2: run tests' . PHP_EOL;
         $val .= sprintf('      Usage: %s -p <path/to/dir or file> [-o /path/to/output.xml] [-v]' . PHP_EOL, $cmd_name);
         $val .= PHP_EOL . PHP_EOL;
@@ -202,7 +210,8 @@ class Padawan_Console
         $val .= "  -c\t\tcreate ASTs" . PHP_EOL;
         $val .= "    --skip-dot\tskip creation of DOT files" . PHP_EOL;
         $val .= "    --skip-xml\tskip creation of XML files" . PHP_EOL;
-        $val .= "    --exclude\t/an/absolute/path or ./a/relative/path" . PHP_EOL;
+        $val .= "    --exclude\t/an/absolute/path (once for each path)" . PHP_EOL;
+        $val .= "    --exclude\t./a/relative/path" . PHP_EOL;
         $val .= "  -p\t\trun tests on ASTs" . PHP_EOL;
         $val .= "    -o\t\tspecify output filename" . PHP_EOL;
         $val .= "    -v\t\tbe a bit more verbose" . PHP_EOL;
