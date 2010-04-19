@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 /**
  * PADAWAN - PHP AST-based Detection of Antipatterns, Workarounds And general Nuisances
