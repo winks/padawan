@@ -44,13 +44,13 @@ class Padawan_Console
             $ret = $this->showHelp();
         } elseif ($this->argv[1] == '--version' || $this->argv[1] == '-V') {
             $ret = $this->showVersion();
-        } elseif ($this->argv[1] == '-l') {
+        } elseif ($this->argv[1] == '--list' || $this->argv[1] == '-l') {
             $ret = $this->showTests();
-        } elseif ($this->argv[1] == '-t') {
+        } elseif ($this->argv[1] == '--tags' || $this->argv[1] == '-t') {
             $ret = $this->showTags();
-        } elseif ($this->argv[1] == '-c') {
+        } elseif ($this->argv[1] == '--create' || $this->argv[1] == '-c') {
             $ret = $this->doCreate();
-        } elseif ($this->argv[1] == '-p') {
+        } elseif ($this->argv[1] == '--parse' || $this->argv[1] == '-p') {
             $ret = $this->doParse();
         } else {
             $ret = $this->showWrongParams();
@@ -207,20 +207,20 @@ class Padawan_Console
         $val .= sprintf('      Usage: %s -p <path/to/dir or file> [-o /path/to/output.xml] [-v]' . PHP_EOL, $cmd_name);
         $val .= PHP_EOL . PHP_EOL;
         $val .= '  General options:' . PHP_EOL;
-        $val .= "  -c\t\tcreate ASTs" . PHP_EOL;
-        $val .= "    --skip-dot\tskip creation of DOT files" . PHP_EOL;
-        $val .= "    --skip-xml\tskip creation of XML files" . PHP_EOL;
-        $val .= "    --exclude\t/an/absolute/path (once for each path)" . PHP_EOL;
-        $val .= "    --exclude\t./a/relative/path" . PHP_EOL;
-        $val .= "  -p\t\trun tests on ASTs" . PHP_EOL;
-        $val .= "    -o\t\tspecify output filename" . PHP_EOL;
-        $val .= "    -v\t\tbe a bit more verbose" . PHP_EOL;
-        $val .= "  -t\t\tshow available tags" . PHP_EOL;
-        $val .= "  -l\t\tlist available tests" . PHP_EOL;
-        $val .= "  --single a,b\trun single tests, separated with comma" . PHP_EOL;
-        $val .= "  --tagged a,b\trun tests by tag, separated with comma" . PHP_EOL;
+        $val .= "  -c, --create\t\tcreate ASTs" . PHP_EOL;
+        $val .= "    --skip-dot\t\tskip creation of DOT files" . PHP_EOL;
+        $val .= "    --skip-xml\t\tskip creation of XML files" . PHP_EOL;
+        $val .= "    --exclude\t\t/an/absolute/path (once for each path)" . PHP_EOL;
+        $val .= "    --exclude\t\t./a/relative/path" . PHP_EOL;
+        $val .= "  -p, --parse\t\trun tests on ASTs" . PHP_EOL;
+        $val .= "    -o\t\t\tspecify output filename" . PHP_EOL;
+        $val .= "    -v\t\t\tbe a bit more verbose" . PHP_EOL;
+        $val .= "  -t, --tags\t\tshow available tags" . PHP_EOL;
+        $val .= "  -l, --list\t\tlist available tests" . PHP_EOL;
+        $val .= "  --single a,b\t\trun single tests, separated with comma" . PHP_EOL;
+        $val .= "  --tagged a,b\t\trun tests by tag, separated with comma" . PHP_EOL;
         $val .= "" . PHP_EOL;
-        $val .= "  --version\tshow version" . PHP_EOL;
+        $val .= "  -V, --version\t\tshow version" . PHP_EOL;
         return array('code' => 0, 'value' => $val);
     }
 
