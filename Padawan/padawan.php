@@ -11,7 +11,11 @@
 
 $mydir = dirname($argv[0]);
 require $mydir.'/classes/Padawan_Base.php';
-require $mydir.'/padawan.config.php';
+require $mydir.'/padawan.defaults.php';
+if (is_file($mydir.'/padawan.config.php') 
+        && is_readable($mydir.'/padawan.config.php')) {
+    require $mydir.'/padawan.config.php';
+}
 require $mydir.'/classes/Padawan_Creation.php';
 require $mydir.'/classes/Padawan_Profiler.php';
 require $mydir.'/classes/Padawan_Console.php';

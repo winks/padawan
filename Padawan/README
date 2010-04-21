@@ -12,6 +12,9 @@ Requirements:
 
 Usage:
 - install phpcompiler
-- edit padawan.config.php - especially if "$ which phc" fails
+- edit padawan.config.php.dist - especially if "$ which phc" fails
+  and rename it to padawan.config.php
 - run "$ ./padawan.php -c <source> <target>" to create the AST files
 - run "$ ./padawan.php -p <dir or file>"
+
+- run "$ ./padawan.php -h" for help
