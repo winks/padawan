@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 /**
  * PADAWAN - PHP AST-based Detection of Antipatterns, Workarounds And general Nuisances
@@ -10,7 +10,6 @@
  */
 
 $mydir = dirname($argv[0]);
-$mydir = 'Padawan';
 require $mydir.'/classes/Padawan_Base.php';
 require $mydir.'/padawan.config.php';
 require $mydir.'/classes/Padawan_Creation.php';
