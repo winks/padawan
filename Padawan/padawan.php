@@ -4,8 +4,8 @@
  * PADAWAN - PHP AST-based Detection of Antipatterns, Workarounds And general Nuisances
  * 
  * @package    Padawan
- * @author     Florian Anderiasch, <anderiasch at mayflower.de>
- * @copyright  2007-2009 Mayflower GmbH, www.mayflower.de
+ * @author     Florian Anderiasch, <florian.anderiasch at mayflower.de>
+ * @copyright  2007-2010 Mayflower GmbH, www.mayflower.de
  * @version    $Id:$
  */
 

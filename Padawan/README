@@ -1,5 +1,5 @@
 PADAWAN - PHP AST-based Detection of Antipatterns, Workarounds And general Nuisances
-(c) 2007-2009 Mayflower GmbH, http://www.mayflower.de
+(c) 2007-2010 Mayflower GmbH, http://www.mayflower.de
 
 Padawan checks php code for code smells that indicate sloppy code, common mistakes and programming antipatterns.
 
